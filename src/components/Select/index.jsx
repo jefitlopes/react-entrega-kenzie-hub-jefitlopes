@@ -1,10 +1,10 @@
 import { forwardRef } from "react";
 
-export const Select = forwardRef(({ id, label }, ref) => (
+export const Select = forwardRef(({ id, label, ...rest }, ref) => (
   <>
     <label>{label}</label>
-    <select id={id} ref={ref}>
-      <option value="null">Selecione o módulo</option>
+    <select id={id} ref={ref} {...rest}>
+      <option value="">Selecione o módulo</option>
       <option value="Primeiro módulo (Introdução ao Frontend)">
         Primeiro módulo (Introdução ao Frontend)
       </option>

@@ -20,7 +20,7 @@ export const formSchema = z
     confirm: z.string().min(1, "Confirmação de senha obrigatório"),
     bio: z.string().min(8, "Campo obrigatório"),
     contact: z.string().min(8, "Campo obrigatório"),
-    course_module: z.null().catch("Selecione uma opção"),
+    course_module: z.string().nonempty("Selecione uma opção"),
   })
   .refine(({ password, confirm }) => confirm === password, {
     message: "Senhas não correspondem",

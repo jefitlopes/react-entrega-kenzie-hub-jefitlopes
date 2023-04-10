@@ -19,23 +19,15 @@ export const RegisterForm = () => {
 
   const navigate = useNavigate();
 
-  const handleToast = () => {
-    toast.success("Conta criada com sucesso!");
-  };
-
-  const handleErrorToast = () => {
-    toast.error("Ops! Algo deu errado!");
-  };
-
   const handleRegister = async (data) => {
     try {
       await api.post("/users", data);
-      handleToast();
+      toast.success("Conta criada com sucesso!");
       setTimeout(() => {
         navigate("/login");
       }, 3000);
     } catch (error) {
-      handleErrorToast(error);
+      toast.error("Ops! Algo deu errado!");
     }
   };
 
