@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema } from "./formSchema";
+import { toast, Toaster } from "react-hot-toast";
+
 formSchema;
 
 export const LoginForm = () => {
@@ -21,27 +23,31 @@ export const LoginForm = () => {
   const navigate = useNavigate();
 
   const submit = async (data) => {
-    api
-      .post("/sessions", data)
-      .then((response) => {
-        setResponse(response);
-      })
-      .catch((err) => {
-        setResponse(err.response);
-      });
+    try {
+      const response = await api.post("/sessions", data);
+      setResponse(response);
+    } catch (err) {
+      setResponse(err.response);
+      toast.error("Email e/ou Senha errado!");
+    }
   };
 
   useEffect(() => {
-    if (response && response.status === 200) {
-      localStorage.setItem("@TOKEN", response.data.token);
-      localStorage.setItem("@USERID", response.data.user.id);
-      setUser(response.data.user);
-      navigate("/");
+    try {
+      if (response && response.status === 200) {
+        localStorage.setItem("@TOKEN", response.data.token);
+        localStorage.setItem("@USERID", response.data.user.id);
+        setUser(response.data.user);
+        navigate("/");
+      }
+    } catch (err) {
+      toast.error(err.message);
     }
   }, [response, navigate]);
 
   return (
     <>
+      <Toaster position="top-right" reverseOrder={true} />
       <LoginHeader />
       <main>
         <h1>Login</h1>
