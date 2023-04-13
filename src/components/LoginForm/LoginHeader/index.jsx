@@ -1,9 +1,10 @@
 import Logo from "../../../assets/Logo.svg";
+import { StyledLoginHeader } from "./style";
 
 export const LoginHeader = () => {
   return (
-    <div>
+    <StyledLoginHeader>
       <img src={Logo} alt="Logo KenzieHub" />
-    </div>
+    </StyledLoginHeader>
   );
 };

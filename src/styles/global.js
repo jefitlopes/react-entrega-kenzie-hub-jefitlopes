@@ -19,7 +19,6 @@ export const GlobalStyle = createGlobalStyle`
 
 body{
     font-family: 'Inter', sans-serif;
-    width: 100vw;
     background: var(--grey-4);
 }
 `;

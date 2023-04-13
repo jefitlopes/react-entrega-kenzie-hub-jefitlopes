@@ -7,6 +7,7 @@ import { RegisterHeader } from "./RegisterHeader";
 import { formSchema } from "./formSchema";
 import { Input } from "../Input";
 import { Select } from "../Select";
+import { StyledRegisterForm } from "./style";
 
 export const RegisterForm = () => {
   const {
@@ -35,7 +36,7 @@ export const RegisterForm = () => {
     <>
       <Toaster position="top-right" reverseOrder={true} />
       <RegisterHeader />
-      <main>
+      <StyledRegisterForm>
         <section>
           <h1>Crie sua conta</h1>
           <p>Rápido e grátis, vamos nessa</p>
@@ -99,7 +100,7 @@ export const RegisterForm = () => {
             <button type="submit">Cadastrar</button>
           </form>
         </section>
-      </main>
+      </StyledRegisterForm>
     </>
   );
 };

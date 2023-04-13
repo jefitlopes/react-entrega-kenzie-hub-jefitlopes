@@ -1,7 +1,8 @@
 import { forwardRef } from "react";
+import { StyledSelectArea } from "./style";
 
 export const Select = forwardRef(({ id, label, ...rest }, ref) => (
-  <>
+  <StyledSelectArea>
     <label>{label}</label>
     <select id={id} ref={ref} {...rest}>
       <option value="">Selecione o módulo</option>
@@ -18,5 +19,5 @@ export const Select = forwardRef(({ id, label, ...rest }, ref) => (
         Quarto módulo (Backend Avançado)
       </option>
     </select>
-  </>
+  </StyledSelectArea>
 ));

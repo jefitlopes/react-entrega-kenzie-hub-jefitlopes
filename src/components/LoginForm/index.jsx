@@ -7,6 +7,7 @@ import { api } from "../../services/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema } from "./formSchema";
 import { toast, Toaster } from "react-hot-toast";
+import { StyledLoginForm } from "./style";
 
 formSchema;
 
@@ -49,7 +50,7 @@ export const LoginForm = () => {
     <>
       <Toaster position="top-right" reverseOrder={true} />
       <LoginHeader />
-      <main>
+      <StyledLoginForm>
         <h1>Login</h1>
         <form onSubmit={handleSubmit(submit)}>
           <Input
@@ -72,7 +73,7 @@ export const LoginForm = () => {
         </form>
         <p>Ainda não possui uma conta?</p>
         <button onClick={() => navigate("/register")}>Cadastre-se</button>
-      </main>
+      </StyledLoginForm>
     </>
   );
 };
