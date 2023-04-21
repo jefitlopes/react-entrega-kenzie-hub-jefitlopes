@@ -23,7 +23,9 @@ export const TechnologiesList = () => {
         </ul>
       ) : (
         <div>
-          <p>Ainda não há nenhuma tecnologia cadastrada</p>
+          <p className="message__empty">
+            Ainda não há nenhuma tecnologia cadastrada
+          </p>
         </div>
       )}
     </StyledTechnologiesList>

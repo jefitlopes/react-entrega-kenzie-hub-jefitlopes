@@ -49,7 +49,7 @@ export const StyledTechnologiesList = styled.div`
     border-radius: 0.25rem;
   }
 
-  p {
+  .message__empty {
     display: flex;
     justify-content: center;
     color: #ffffff;
