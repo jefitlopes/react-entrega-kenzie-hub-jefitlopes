@@ -1,17 +1,21 @@
 import { LoginHeader } from "./LoginHeader";
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
-import { Input } from "../Input";
-import { useNavigate } from "react-router-dom";
-import { api } from "../../services/api";
+import { useContext } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema } from "./formSchema";
-import { toast, Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { StyledLoginForm } from "./style";
-
-formSchema;
+import { UserContext } from "../../providers/UserContext";
+import { Input } from "../fragments/Input";
 
 export const LoginForm = () => {
+  const { user, Navigate, submit, navigate } = useContext(UserContext);
+
+  if (localStorage.getItem("@TOKEN")) {
+    return <Navigate to="/" />;
+  }
+
   const {
     register,
     handleSubmit,
@@ -19,32 +23,6 @@ export const LoginForm = () => {
   } = useForm({
     resolver: zodResolver(formSchema),
   });
-  const [response, setResponse] = useState("");
-  const [user, setUser] = useState({});
-  const navigate = useNavigate();
-
-  const submit = async (data) => {
-    try {
-      const response = await api.post("/sessions", data);
-      setResponse(response);
-    } catch (err) {
-      setResponse(err.response);
-      toast.error("Email e/ou Senha errado!");
-    }
-  };
-
-  useEffect(() => {
-    try {
-      if (response && response.status === 200) {
-        localStorage.setItem("@TOKEN", response.data.token);
-        localStorage.setItem("@USERID", response.data.user.id);
-        setUser(response.data.user);
-        navigate("/");
-      }
-    } catch (err) {
-      toast.error(err.message);
-    }
-  }, [response, navigate]);
 
   return (
     <>

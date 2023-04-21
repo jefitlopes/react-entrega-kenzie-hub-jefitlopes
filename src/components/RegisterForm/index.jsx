@@ -1,15 +1,17 @@
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { api } from "../../services/api";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterHeader } from "./RegisterHeader";
 import { formSchema } from "./formSchema";
-import { Input } from "../Input";
-import { Select } from "../Select";
+import { Input } from "../fragments/Input";
+import { Select } from "../fragments/Select";
 import { StyledRegisterForm } from "./style";
 
 export const RegisterForm = () => {
+  const { handleRegister, Navigate } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
@@ -18,19 +20,9 @@ export const RegisterForm = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const navigate = useNavigate();
-
-  const handleRegister = async (data) => {
-    try {
-      await api.post("/users", data);
-      toast.success("Conta criada com sucesso!");
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
-    } catch (error) {
-      toast.error("Ops! Algo deu errado!");
-    }
-  };
+  if (localStorage.getItem("@TOKEN")) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <>

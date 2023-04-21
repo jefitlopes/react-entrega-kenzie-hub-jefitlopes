@@ -76,24 +76,11 @@ export const StyledHome = styled.div`
         }
       }
     }
-    .message__container {
+    .tech__container {
       display: flex;
       flex-direction: column;
-      padding: 2rem 0.75rem 0 0.75rem;
-      gap: 0.625rem;
-
-      h2 {
-        font-weight: 700;
-        font-size: 1.125rem;
-        line-height: 1.75rem;
-        color: var(--grey-0);
-      }
-      p {
-        font-weight: 400;
-        font-size: 0.75rem;
-        line-height: 1.5rem;
-        color: #ffffff;
-      }
+      padding: 1.1875rem 0.75rem 0 0.75rem;
+      width: 100%;
     }
   }
   @media screen and (min-width: 768px) {
@@ -110,7 +97,7 @@ export const StyledHome = styled.div`
           margin: 0 auto;
         }
       }
-      .message__container {
+      .tech__container {
         width: 100%;
       }
     }
@@ -131,7 +118,7 @@ export const StyledHome = styled.div`
           width: 48.75rem;
         }
       }
-      .message__container {
+      .tech__container {
         width: 48.75rem;
         padding-left: 0;
       }
